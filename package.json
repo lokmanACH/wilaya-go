@@ -6,10 +6,7 @@
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
-    "preview": "vite preview",
-    "start": "node .output/server/index.mjs",
-    "lint": "eslint .",
-    "format": "prettier --write ."
+    "preview": "vite preview"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
