@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TravelerRouteImport } from './routes/traveler'
+import { Route as SignupRouteImport } from './routes/signup'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as HelpRouteImport } from './routes/help'
 import { Route as DriverRouteImport } from './routes/driver'
@@ -24,6 +25,11 @@ import { Route as TravelerBookingIdRouteImport } from './routes/traveler.booking
 const TravelerRoute = TravelerRouteImport.update({
   id: '/traveler',
   path: '/traveler',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -83,6 +89,7 @@ export interface FileRoutesByFullPath {
   '/driver': typeof DriverRoute
   '/help': typeof HelpRoute
   '/login': typeof LoginRoute
+  '/signup': typeof SignupRoute
   '/traveler': typeof TravelerRouteWithChildren
   '/tracking/$id': typeof TrackingIdRoute
   '/traveler/search': typeof TravelerSearchRoute
@@ -96,6 +103,7 @@ export interface FileRoutesByTo {
   '/driver': typeof DriverRoute
   '/help': typeof HelpRoute
   '/login': typeof LoginRoute
+  '/signup': typeof SignupRoute
   '/traveler': typeof TravelerRouteWithChildren
   '/tracking/$id': typeof TrackingIdRoute
   '/traveler/search': typeof TravelerSearchRoute
@@ -110,6 +118,7 @@ export interface FileRoutesById {
   '/driver': typeof DriverRoute
   '/help': typeof HelpRoute
   '/login': typeof LoginRoute
+  '/signup': typeof SignupRoute
   '/traveler': typeof TravelerRouteWithChildren
   '/tracking/$id': typeof TrackingIdRoute
   '/traveler/search': typeof TravelerSearchRoute
@@ -125,6 +134,7 @@ export interface FileRouteTypes {
     | '/driver'
     | '/help'
     | '/login'
+    | '/signup'
     | '/traveler'
     | '/tracking/$id'
     | '/traveler/search'
@@ -138,6 +148,7 @@ export interface FileRouteTypes {
     | '/driver'
     | '/help'
     | '/login'
+    | '/signup'
     | '/traveler'
     | '/tracking/$id'
     | '/traveler/search'
@@ -151,6 +162,7 @@ export interface FileRouteTypes {
     | '/driver'
     | '/help'
     | '/login'
+    | '/signup'
     | '/traveler'
     | '/tracking/$id'
     | '/traveler/search'
@@ -165,6 +177,7 @@ export interface RootRouteChildren {
   DriverRoute: typeof DriverRoute
   HelpRoute: typeof HelpRoute
   LoginRoute: typeof LoginRoute
+  SignupRoute: typeof SignupRoute
   TravelerRoute: typeof TravelerRouteWithChildren
   TrackingIdRoute: typeof TrackingIdRoute
 }
@@ -176,6 +189,13 @@ declare module '@tanstack/react-router' {
       path: '/traveler'
       fullPath: '/traveler'
       preLoaderRoute: typeof TravelerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -275,6 +295,7 @@ const rootRouteChildren: RootRouteChildren = {
   DriverRoute: DriverRoute,
   HelpRoute: HelpRoute,
   LoginRoute: LoginRoute,
+  SignupRoute: SignupRoute,
   TravelerRoute: TravelerRouteWithChildren,
   TrackingIdRoute: TrackingIdRoute,
 }

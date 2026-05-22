@@ -4,11 +4,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Tabs, TabsContent } from "@/components/ui/tabs";
 import { Logo } from "@/components/Logo";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Badge } from "@/components/ui/badge";
-import { Shield, Car, Users, UserCog, Smartphone } from "lucide-react";
+import { Car, Users, UserCog, ArrowLeft } from "lucide-react";
 import { toast } from "sonner";
 import { useRole } from "@/hooks/use-theme";
 
@@ -21,7 +21,6 @@ function LoginPage() {
   const nav = useNavigate();
   const { setRole } = useRole();
   const [phone, setPhone] = useState("");
-  const [otp, setOtp] = useState("");
 
   const go = (role: "admin" | "driver" | "traveler") => {
     setRole(role);
@@ -33,7 +32,12 @@ function LoginPage() {
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <header className="flex h-16 items-center justify-between border-b px-4 md:px-6">
-        <Link to="/"><Logo /></Link>
+        <div className="flex items-center gap-3">
+          <Button asChild size="icon" variant="ghost">
+            <Link to="/"><ArrowLeft className="h-4 w-4" /></Link>
+          </Button>
+          <Logo />
+        </div>
         <ThemeToggle />
       </header>
 
@@ -60,10 +64,6 @@ function LoginPage() {
             <p className="text-sm text-muted-foreground">Saisissez votre numéro pour recevoir un code OTP.</p>
 
             <Tabs defaultValue="password" className="mt-5">
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="password">Mot de passe</TabsTrigger>
-                <TabsTrigger value="otp">OTP</TabsTrigger>
-              </TabsList>
               <TabsContent value="password" className="space-y-3 pt-4">
                 <div className="space-y-1.5">
                   <Label>Téléphone</Label>
@@ -77,28 +77,7 @@ function LoginPage() {
                   Connexion
                 </Button>
               </TabsContent>
-              <TabsContent value="otp" className="space-y-3 pt-4">
-                <div className="space-y-1.5">
-                  <Label>Téléphone</Label>
-                  <Input placeholder="+213 ..." value={phone} onChange={(e) => setPhone(e.target.value)} />
-                </div>
-                <div className="space-y-1.5">
-                  <Label>Code OTP fictif</Label>
-                  <Input placeholder="123456" value={otp} onChange={(e) => setOtp(e.target.value)} />
-                  <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                    <Smartphone className="h-3 w-3" /> Code envoyé par SMS (simulé)
-                  </div>
-                </div>
-                <Button className="w-full font-semibold" onClick={() => go("traveler")}>
-                  Connexion avec OTP
-                </Button>
-              </TabsContent>
             </Tabs>
-
-            <div className="mt-5 flex items-center gap-2 rounded-lg border bg-muted/40 p-3 text-xs text-muted-foreground">
-              <Shield className="h-4 w-4 text-success" />
-              Vos identifiants ne sont jamais transmis dans cette démo.
-            </div>
           </CardContent>
         </Card>
       </main>
