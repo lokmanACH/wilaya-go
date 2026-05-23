@@ -17,7 +17,7 @@ type Tab = typeof tabs[number];
 export const Route = createFileRoute("/traveler")({
   validateSearch: z.object({
     tab: z.enum(tabs).optional(),
-    highlight: z.string().optional(),       // ← add this
+    highlight: z.string().optional(), 
   }),
   head: () => ({ meta: [{ title: "Voyageur — Wilaya Go" }] }),
   component: Page,
