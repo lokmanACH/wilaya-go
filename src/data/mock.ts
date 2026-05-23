@@ -1,6 +1,6 @@
 export const wilayas = [
-  "Alger", "Oran", "Constantine", "Batna", "Sétif", "Annaba", "Blida", "Tlemcen",
-  "Béjaïa", "Biskra", "Ghardaïa", "Tizi Ouzou", "Skikda", "Jijel", "Mostaganem",
+  "Constantine", "Mila", "Constantine", "Batna", "Sétif", "Annaba", "Blida", "Tlemcen",
+  "Eulma", "Biskra", "Ghardaïa", "Skikda", "Skikda", "Jijel", "Mostaganem",
   "Ouargla", "El Oued", "Chlef", "Médéa", "Bouira",
 ];
 
@@ -86,29 +86,29 @@ export interface Payment {
 }
 
 export const drivers: Driver[] = [
-  { id: "d1", name: "Ahmed Benali", phone: "+213 555 12 34 56", email: "ahmed.benali@wilayago.dz", wilaya: "Alger", transportType: "Taxi", vehicleBrand: "Hyundai", vehicleModel: "Accent", plate: "00123-116-16", seats: 4, rating: 4.9, trips: 312, verified: true, status: "Actif", joinedAt: "2024-03-12" },
-  { id: "d2", name: "Karim Mansouri", phone: "+213 661 22 11 09", email: "karim.m@wilayago.dz", wilaya: "Oran", transportType: "Bus", vehicleBrand: "Mercedes", vehicleModel: "Tourismo", plate: "01432-118-31", seats: 38, rating: 4.7, trips: 188, verified: true, status: "Actif", joinedAt: "2024-01-08" },
+  { id: "d1", name: "Ahmed Benali", phone: "+213 555 12 34 56", email: "ahmed.benali@wilayago.dz", wilaya: "Constantine", transportType: "Taxi", vehicleBrand: "Hyundai", vehicleModel: "Accent", plate: "00123-116-16", seats: 4, rating: 4.9, trips: 312, verified: true, status: "Actif", joinedAt: "2024-03-12" },
+  { id: "d2", name: "Karim Mansouri", phone: "+213 661 22 11 09", email: "karim.m@wilayago.dz", wilaya: "Mila", transportType: "Bus", vehicleBrand: "Mercedes", vehicleModel: "Tourismo", plate: "01432-118-31", seats: 38, rating: 4.7, trips: 188, verified: true, status: "Actif", joinedAt: "2024-01-08" },
   { id: "d3", name: "Samir Haddad", phone: "+213 770 88 21 45", email: "samir.h@wilayago.dz", wilaya: "Sétif", transportType: "Taxi", vehicleBrand: "Renault", vehicleModel: "Symbol", plate: "08821-114-19", seats: 4, rating: 4.6, trips: 254, verified: true, status: "Actif", joinedAt: "2024-05-21" },
   { id: "d4", name: "Youcef Brahimi", phone: "+213 553 47 89 12", email: "youcef.b@wilayago.dz", wilaya: "Annaba", transportType: "Bus", vehicleBrand: "Hyundai", vehicleModel: "Universe", plate: "11223-117-23", seats: 36, rating: 4.8, trips: 142, verified: true, status: "Actif", joinedAt: "2024-02-17" },
-  { id: "d5", name: "Mourad Ziani", phone: "+213 698 33 22 11", email: "mourad.z@wilayago.dz", wilaya: "Béjaïa", transportType: "Taxi", vehicleBrand: "Dacia", vehicleModel: "Logan", plate: "04412-115-06", seats: 4, rating: 4.5, trips: 97, verified: false, status: "En attente", joinedAt: "2025-04-10" },
+  { id: "d5", name: "Mourad Ziani", phone: "+213 698 33 22 11", email: "mourad.z@wilayago.dz", wilaya: "Eulma", transportType: "Taxi", vehicleBrand: "Dacia", vehicleModel: "Logan", plate: "04412-115-06", seats: 4, rating: 4.5, trips: 97, verified: false, status: "En attente", joinedAt: "2025-04-10" },
   { id: "d6", name: "Nabil Cherif", phone: "+213 540 11 76 32", email: "nabil.c@wilayago.dz", wilaya: "Constantine", transportType: "Taxi", vehicleBrand: "Peugeot", vehicleModel: "301", plate: "07765-119-25", seats: 4, rating: 4.4, trips: 41, verified: false, status: "En attente", joinedAt: "2025-05-02" },
 ];
 
 export const travelers: Traveler[] = [
-  { id: "t1", name: "Sara Meziane", phone: "+213 555 90 12 34", email: "sara.m@gmail.com", wilaya: "Alger", trips: 18, status: "Actif", joinedAt: "2024-06-12" },
-  { id: "t2", name: "Mohamed Khaled", phone: "+213 661 78 45 11", email: "mkhaled@gmail.com", wilaya: "Oran", trips: 9, status: "Actif", joinedAt: "2024-09-04" },
+  { id: "t1", name: "Sara Meziane", phone: "+213 555 90 12 34", email: "sara.m@gmail.com", wilaya: "Constantine", trips: 18, status: "Actif", joinedAt: "2024-06-12" },
+  { id: "t2", name: "Mohamed Khaled", phone: "+213 661 78 45 11", email: "mkhaled@gmail.com", wilaya: "Mila", trips: 9, status: "Actif", joinedAt: "2024-09-04" },
   { id: "t3", name: "Lina Bouchareb", phone: "+213 770 22 33 44", email: "lina.b@gmail.com", wilaya: "Constantine", trips: 24, status: "Actif", joinedAt: "2024-04-18" },
-  { id: "t4", name: "Amine Touati", phone: "+213 553 11 22 33", email: "amine.t@gmail.com", wilaya: "Béjaïa", trips: 6, status: "Suspendu", joinedAt: "2025-01-22" },
+  { id: "t4", name: "Amine Touati", phone: "+213 553 11 22 33", email: "amine.t@gmail.com", wilaya: "Eulma", trips: 6, status: "Suspendu", joinedAt: "2025-01-22" },
   { id: "t5", name: "Yasmine Haddad", phone: "+213 698 55 44 33", email: "yasmine.h@gmail.com", wilaya: "Sétif", trips: 31, status: "Actif", joinedAt: "2023-11-30" },
 ];
 
 export const trips: Trip[] = [
-  { id: "tr1", fromWilaya: "Alger", toWilaya: "Batna", date: "2026-05-16", time: "07:30", transportType: "Taxi", price: 2500, seatsTotal: 4, seatsAvailable: 2, bookedSeats: [1, 3], driverId: "d1", estimatedDuration: "5h 30min", status: "Disponible", rating: 4.9, pickupLocation: "Gare routière du Caroubier, Alger", dropoffLocation: "Gare routière de Batna", gpsStatus: "Inactif", progressPercentage: 0 },
-  { id: "tr2", fromWilaya: "Oran", toWilaya: "Alger", date: "2026-05-16", time: "08:00", transportType: "Bus", price: 1200, seatsTotal: 38, seatsAvailable: 14, bookedSeats: Array.from({ length: 24 }, (_, i) => i + 1), driverId: "d2", estimatedDuration: "4h 45min", status: "En cours", rating: 4.7, pickupLocation: "Gare routière d'Oran", dropoffLocation: "Gare routière du Caroubier, Alger", gpsStatus: "Actif", progressPercentage: 62 },
+  { id: "tr1", fromWilaya: "Constantine", toWilaya: "Batna", date: "2026-05-16", time: "07:30", transportType: "Taxi", price: 2500, seatsTotal: 4, seatsAvailable: 2, bookedSeats: [1, 3], driverId: "d1", estimatedDuration: "5h 30min", status: "Disponible", rating: 4.9, pickupLocation: "Gare routière du Caroubier, Constantine", dropoffLocation: "Gare routière de Batna", gpsStatus: "Inactif", progressPercentage: 0 },
+  { id: "tr2", fromWilaya: "Mila", toWilaya: "Constantine", date: "2026-05-16", time: "08:00", transportType: "Bus", price: 1200, seatsTotal: 38, seatsAvailable: 14, bookedSeats: Array.from({ length: 24 }, (_, i) => i + 1), driverId: "d2", estimatedDuration: "4h 45min", status: "En cours", rating: 4.7, pickupLocation: "Gare routière d'Mila", dropoffLocation: "Gare routière du Caroubier, Constantine", gpsStatus: "Actif", progressPercentage: 62 },
   { id: "tr3", fromWilaya: "Sétif", toWilaya: "Constantine", date: "2026-05-17", time: "09:15", transportType: "Taxi", price: 1500, seatsTotal: 4, seatsAvailable: 4, bookedSeats: [], driverId: "d3", estimatedDuration: "2h 10min", status: "Disponible", rating: 4.6, pickupLocation: "Place du 8 Mai 1945, Sétif", dropoffLocation: "Gare routière de Constantine", gpsStatus: "Inactif", progressPercentage: 0 },
-  { id: "tr4", fromWilaya: "Annaba", toWilaya: "Alger", date: "2026-05-15", time: "06:00", transportType: "Bus", price: 1800, seatsTotal: 36, seatsAvailable: 0, bookedSeats: Array.from({ length: 36 }, (_, i) => i + 1), driverId: "d4", estimatedDuration: "6h 20min", status: "Terminé", rating: 4.8, pickupLocation: "Gare routière d'Annaba", dropoffLocation: "Gare routière du Caroubier, Alger", gpsStatus: "Inactif", progressPercentage: 100 },
-  { id: "tr5", fromWilaya: "Béjaïa", toWilaya: "Tizi Ouzou", date: "2026-05-18", time: "10:30", transportType: "Taxi", price: 1100, seatsTotal: 4, seatsAvailable: 3, bookedSeats: [2], driverId: "d5", estimatedDuration: "1h 50min", status: "Disponible", rating: 4.5, pickupLocation: "Gare routière de Béjaïa", dropoffLocation: "Gare routière de Tizi Ouzou", gpsStatus: "Inactif", progressPercentage: 0 },
-  { id: "tr6", fromWilaya: "Alger", toWilaya: "Oran", date: "2026-05-19", time: "14:00", transportType: "Bus", price: 1400, seatsTotal: 38, seatsAvailable: 22, bookedSeats: Array.from({ length: 16 }, (_, i) => i + 1), driverId: "d2", estimatedDuration: "4h 30min", status: "Disponible", rating: 4.7, pickupLocation: "Gare routière du Caroubier, Alger", dropoffLocation: "Gare routière d'Oran", gpsStatus: "Inactif", progressPercentage: 0 },
+  { id: "tr4", fromWilaya: "Annaba", toWilaya: "Constantine", date: "2026-05-15", time: "06:00", transportType: "Bus", price: 1800, seatsTotal: 36, seatsAvailable: 0, bookedSeats: Array.from({ length: 36 }, (_, i) => i + 1), driverId: "d4", estimatedDuration: "6h 20min", status: "Terminé", rating: 4.8, pickupLocation: "Gare routière d'Annaba", dropoffLocation: "Gare routière du Caroubier, Constantine", gpsStatus: "Inactif", progressPercentage: 100 },
+  { id: "tr5", fromWilaya: "Eulma", toWilaya: "Skikda", date: "2026-05-18", time: "10:30", transportType: "Taxi", price: 1100, seatsTotal: 4, seatsAvailable: 3, bookedSeats: [2], driverId: "d5", estimatedDuration: "1h 50min", status: "Disponible", rating: 4.5, pickupLocation: "Gare routière de Eulma", dropoffLocation: "Gare routière de Skikda", gpsStatus: "Inactif", progressPercentage: 0 },
+  { id: "tr6", fromWilaya: "Constantine", toWilaya: "Mila", date: "2026-05-19", time: "14:00", transportType: "Bus", price: 1400, seatsTotal: 38, seatsAvailable: 22, bookedSeats: Array.from({ length: 16 }, (_, i) => i + 1), driverId: "d2", estimatedDuration: "4h 30min", status: "Disponible", rating: 4.7, pickupLocation: "Gare routière du Caroubier, Constantine", dropoffLocation: "Gare routière d'Mila", gpsStatus: "Inactif", progressPercentage: 0 },
 ];
 
 export const reservations: Reservation[] = [
@@ -140,9 +140,9 @@ export const reviews = [
 ];
 
 export const notifications = [
-  { id: "n1", title: "Confirmation de réservation", body: "Votre réservation Alger → Batna est confirmée.", time: "Il y a 5 minutes", icon: "check" },
+  { id: "n1", title: "Confirmation de réservation", body: "Votre réservation Constantine → Batna est confirmée.", time: "Il y a 5 minutes", icon: "check" },
   { id: "n2", title: "Paiement confirmé", body: "Paiement de 2 700 DA via CIB reçu.", time: "Il y a 8 minutes", icon: "card" },
-  { id: "n3", title: "Rappel avant départ", body: "Votre trajet Oran → Alger démarre dans 1h.", time: "Aujourd'hui à 08:30", icon: "bell" },
+  { id: "n3", title: "Rappel avant départ", body: "Votre trajet Mila → Constantine démarre dans 1h.", time: "Aujourd'hui à 08:30", icon: "bell" },
   { id: "n4", title: "Arrivée du véhicule", body: "Le chauffeur Ahmed est sur place.", time: "Hier à 18:45", icon: "car" },
   { id: "n5", title: "Remboursement", body: "Un remboursement de 1 500 DA a été effectué.", time: "Il y a 2 jours", icon: "refund" },
 ];
@@ -157,12 +157,12 @@ export const monthlyRevenue = [
 ];
 
 export const reservationsByWilaya = [
-  { wilaya: "Alger", reservations: 4820 },
-  { wilaya: "Oran", reservations: 3110 },
+  { wilaya: "Constantine", reservations: 4820 },
+  { wilaya: "Mila", reservations: 3110 },
   { wilaya: "Constantine", reservations: 2640 },
   { wilaya: "Sétif", reservations: 1890 },
   { wilaya: "Annaba", reservations: 1620 },
-  { wilaya: "Béjaïa", reservations: 1340 },
+  { wilaya: "Eulma", reservations: 1340 },
   { wilaya: "Batna", reservations: 1120 },
 ];
 

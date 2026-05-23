@@ -122,12 +122,16 @@ function SignupPage() {
             <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
               <label className="flex flex-col gap-1">
                 <span className="text-sm">Scan du permis de conduire</span>
-                <input name="licenseScan" type="file" accept="image/*,application/pdf" />
+                <input 
+                className="rounded-md border p-2 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" 
+                name="licenseScan" type="file" accept="image/*,application/pdf" />
               </label>
 
               <label className="flex flex-col gap-1">
                 <span className="text-sm">Scan de la carte nationale</span>
-                <input name="idScan" type="file" accept="image/*,application/pdf" />
+                <input 
+                className="rounded-md border p-2 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" 
+                name="idScan" type="file" accept="image/*,application/pdf" />
               </label>
             </div>
 
@@ -219,7 +223,9 @@ function SignupPage() {
             <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
               <label className="flex flex-col gap-1">
                 <span className="text-sm">Scan carte nationale</span>
-                <input name="idScan" type="file" accept="image/*,application/pdf" />
+                <input 
+                className="rounded-md border p-2 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" 
+                name="idScan" type="file" accept="image/*,application/pdf" />
               </label>
 
               <label className="flex flex-col gap-1">

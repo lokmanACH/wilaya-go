@@ -49,13 +49,10 @@ const driverNav: NavItem[] = [
 
 const travelerNav: NavItem[] = [
   { to: "/traveler", label: "Vue d'ensemble", icon: LayoutDashboard },
-  { to: "/traveler/search", label: "Rechercher un trajet", icon: Search },
   { to: "/traveler?tab=reservations", label: "Mes réservations", icon: Ticket },
   { to: "/traveler?tab=tickets", label: "Mes billets QR", icon: QrCode },
-  { to: "/traveler?tab=tracking", label: "Suivi GPS", icon: MapPin },
   { to: "/traveler?tab=payments", label: "Paiements", icon: CreditCard },
   { to: "/traveler?tab=refunds", label: "Remboursements", icon: RefreshCcw },
-  { to: "/traveler?tab=reviews", label: "Avis", icon: Star },
   { to: "/traveler?tab=notifications", label: "Notifications", icon: Bell },
   { to: "/traveler?tab=favorites", label: "Chauffeurs favoris", icon: Heart },
   { to: "/traveler?tab=settings", label: "Paramètres", icon: Settings },
@@ -113,13 +110,6 @@ function SidebarContent({ role, onNavigate }: { role: DashboardRole; onNavigate?
         </nav>
       </ScrollArea>
       <div className="border-t border-sidebar-border p-3">
-        <Link
-          to="/help"
-          onClick={onNavigate}
-          className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-sidebar-foreground/80 hover:bg-sidebar-accent"
-        >
-          <HelpCircle className="h-4 w-4" /> Aide
-        </Link>
         <Link
           to="/login"
           onClick={onNavigate}
@@ -232,9 +222,6 @@ export function DashboardLayout({
               <DropdownMenuContent align="end" className="w-56">
                 <DropdownMenuLabel>Mon compte</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem asChild>
-                  <Link to="/help">Aide et assistant</Link>
-                </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <Link to="/login">Changer de rôle</Link>
                 </DropdownMenuItem>

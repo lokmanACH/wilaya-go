@@ -12,11 +12,9 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as TravelerRouteImport } from './routes/traveler'
 import { Route as SignupRouteImport } from './routes/signup'
 import { Route as LoginRouteImport } from './routes/login'
-import { Route as HelpRouteImport } from './routes/help'
 import { Route as DriverRouteImport } from './routes/driver'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as TravelerSearchRouteImport } from './routes/traveler.search'
 import { Route as TrackingIdRouteImport } from './routes/tracking.$id'
 import { Route as TravelerTicketIdRouteImport } from './routes/traveler.ticket.$id'
 import { Route as TravelerPaymentIdRouteImport } from './routes/traveler.payment.$id'
@@ -37,11 +35,6 @@ const LoginRoute = LoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
-const HelpRoute = HelpRouteImport.update({
-  id: '/help',
-  path: '/help',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const DriverRoute = DriverRouteImport.update({
   id: '/driver',
   path: '/driver',
@@ -56,11 +49,6 @@ const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
-} as any)
-const TravelerSearchRoute = TravelerSearchRouteImport.update({
-  id: '/search',
-  path: '/search',
-  getParentRoute: () => TravelerRoute,
 } as any)
 const TrackingIdRoute = TrackingIdRouteImport.update({
   id: '/tracking/$id',
@@ -87,12 +75,10 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/driver': typeof DriverRoute
-  '/help': typeof HelpRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
   '/traveler': typeof TravelerRouteWithChildren
   '/tracking/$id': typeof TrackingIdRoute
-  '/traveler/search': typeof TravelerSearchRoute
   '/traveler/booking/$id': typeof TravelerBookingIdRoute
   '/traveler/payment/$id': typeof TravelerPaymentIdRoute
   '/traveler/ticket/$id': typeof TravelerTicketIdRoute
@@ -101,12 +87,10 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/driver': typeof DriverRoute
-  '/help': typeof HelpRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
   '/traveler': typeof TravelerRouteWithChildren
   '/tracking/$id': typeof TrackingIdRoute
-  '/traveler/search': typeof TravelerSearchRoute
   '/traveler/booking/$id': typeof TravelerBookingIdRoute
   '/traveler/payment/$id': typeof TravelerPaymentIdRoute
   '/traveler/ticket/$id': typeof TravelerTicketIdRoute
@@ -116,12 +100,10 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/driver': typeof DriverRoute
-  '/help': typeof HelpRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
   '/traveler': typeof TravelerRouteWithChildren
   '/tracking/$id': typeof TrackingIdRoute
-  '/traveler/search': typeof TravelerSearchRoute
   '/traveler/booking/$id': typeof TravelerBookingIdRoute
   '/traveler/payment/$id': typeof TravelerPaymentIdRoute
   '/traveler/ticket/$id': typeof TravelerTicketIdRoute
@@ -132,12 +114,10 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/driver'
-    | '/help'
     | '/login'
     | '/signup'
     | '/traveler'
     | '/tracking/$id'
-    | '/traveler/search'
     | '/traveler/booking/$id'
     | '/traveler/payment/$id'
     | '/traveler/ticket/$id'
@@ -146,12 +126,10 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/driver'
-    | '/help'
     | '/login'
     | '/signup'
     | '/traveler'
     | '/tracking/$id'
-    | '/traveler/search'
     | '/traveler/booking/$id'
     | '/traveler/payment/$id'
     | '/traveler/ticket/$id'
@@ -160,12 +138,10 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/driver'
-    | '/help'
     | '/login'
     | '/signup'
     | '/traveler'
     | '/tracking/$id'
-    | '/traveler/search'
     | '/traveler/booking/$id'
     | '/traveler/payment/$id'
     | '/traveler/ticket/$id'
@@ -175,7 +151,6 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRoute
   DriverRoute: typeof DriverRoute
-  HelpRoute: typeof HelpRoute
   LoginRoute: typeof LoginRoute
   SignupRoute: typeof SignupRoute
   TravelerRoute: typeof TravelerRouteWithChildren
@@ -205,13 +180,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/help': {
-      id: '/help'
-      path: '/help'
-      fullPath: '/help'
-      preLoaderRoute: typeof HelpRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/driver': {
       id: '/driver'
       path: '/driver'
@@ -232,13 +200,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
-    }
-    '/traveler/search': {
-      id: '/traveler/search'
-      path: '/search'
-      fullPath: '/traveler/search'
-      preLoaderRoute: typeof TravelerSearchRouteImport
-      parentRoute: typeof TravelerRoute
     }
     '/tracking/$id': {
       id: '/tracking/$id'
@@ -272,14 +233,12 @@ declare module '@tanstack/react-router' {
 }
 
 interface TravelerRouteChildren {
-  TravelerSearchRoute: typeof TravelerSearchRoute
   TravelerBookingIdRoute: typeof TravelerBookingIdRoute
   TravelerPaymentIdRoute: typeof TravelerPaymentIdRoute
   TravelerTicketIdRoute: typeof TravelerTicketIdRoute
 }
 
 const TravelerRouteChildren: TravelerRouteChildren = {
-  TravelerSearchRoute: TravelerSearchRoute,
   TravelerBookingIdRoute: TravelerBookingIdRoute,
   TravelerPaymentIdRoute: TravelerPaymentIdRoute,
   TravelerTicketIdRoute: TravelerTicketIdRoute,
@@ -293,7 +252,6 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRoute,
   DriverRoute: DriverRoute,
-  HelpRoute: HelpRoute,
   LoginRoute: LoginRoute,
   SignupRoute: SignupRoute,
   TravelerRoute: TravelerRouteWithChildren,

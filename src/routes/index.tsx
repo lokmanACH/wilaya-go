@@ -44,7 +44,6 @@ function Navbar() {
           <a href="#accueil" className="text-muted-foreground hover:text-foreground">Accueil</a>
           <a href="#fonctionnalites" className="text-muted-foreground hover:text-foreground">Fonctionnalités</a>
           <a href="#comment" className="text-muted-foreground hover:text-foreground">Comment ça marche</a>
-          <Link to="/help" className="text-muted-foreground hover:text-foreground">Aide</Link>
         </nav>
         <div className="flex items-center gap-2">
           <ThemeToggle />
@@ -66,7 +65,7 @@ function Hero() {
       <div className="mx-auto flex max-w-7xl gap-10 px-4 py-20 md:px-6 md:py-28 lg:grid-cols-2 lg:py-32 items-center justify-center">
         <div className="p-8 text-center flex flex-col items-center justify-center">
           <h1 className="inline-block rounded-lg bg-background/50 backdrop-blur px-4 py-2 text-4xl font-extrabold leading-tight tracking-tight md:text-5xl lg:text-6xl">
-            Réservez vos trajets entre wilayas<span className="text-primary">facilement</span> et en toute <span className="text-primary">sécurité</span> 
+            Réservez vos trajets entre wilayas<span className="text-primary"> facilement</span> et en toute <span className="text-primary">sécurité</span> 
           </h1>
           <p className="mt-5 inline-block rounded-lg bg-background/50 backdrop-blur px-4 py-2 max-w-xl text-base  md:text-lg">
             Wilaya Go vous permet de réserver une place en taxi ou en bus, payer en ligne et suivre votre trajet en temps réel
@@ -117,7 +116,7 @@ function RegCard({ title, desc, cta, icon: Icon, dark }: { title: string; desc: 
         <h3 className="text-2xl font-bold">{title}</h3>
         <p className={dark ? "text-background/70" : "text-muted-foreground"}>{desc}</p>
         <Button asChild className={`mt-2 w-fit font-semibold ${dark ? "" : ""}`}>
-          <Link to="/login">{cta} <ArrowRight className="ml-2 h-4 w-4" /></Link>
+          <Link to="/signup">{cta} <ArrowRight className="ml-2 h-4 w-4" /></Link>
         </Button>
       </CardContent>
     </Card>
