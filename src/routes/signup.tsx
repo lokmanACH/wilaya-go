@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
+import logo_pic from "@/assets/logo_pic.png";
+import logo_name from "@/assets/logo_name.png";
 
 export const Route = createFileRoute("/signup")({
   head: () => ({ meta: [{ title: "Inscription — Wilaya Go" }] }),
@@ -72,7 +74,10 @@ function SignupPage() {
           <Button asChild size="icon" variant="ghost">
             <Link to="/"><ArrowLeft className="h-4 w-4" /></Link>
           </Button>
-          <Logo />
+          <div className="hidden items-center gap-3 md:flex">
+            <img src={logo_pic} alt="Logo" className="h-8 w-8" />
+            <img src={logo_name} alt="Wilaya Go" className="h-6 w-auto" />
+          </div>
         </div>
         <ThemeToggle />
       </header>

@@ -86,7 +86,7 @@ const stationTrips: Record<string, Record<string, {
   Constantine: {
     "Gare Routière Centrale": [
       { id:"ct-gc-1", from:"Constantine", to:"Alger",    dep:"06:00", date:"2026-05-24", driver:"Karim Mansouri",  vehicle:"Mercedes Tourismo", rating:4.8, seats:12, price:1200, type:"Bus"  },
-      { id:"ct-gc-2", from:"Constantine", to:"Oran",     dep:"08:30", date:"2026-05-24", driver:"Moussa Benaissa", vehicle:"Karosa LC936",       rating:4.5, seats:3,  price:1450, type:"Bus"  },
+      { id:"ct-gc-2", from:"Constantine", to:"Mila",     dep:"08:30", date:"2026-05-24", driver:"Moussa Benaissa", vehicle:"Karosa LC936",       rating:4.5, seats:3,  price:1450, type:"Bus"  },
       { id:"ct-gc-3", from:"Constantine", to:"Annaba",   dep:"10:00", date:"2026-05-24", driver:"Bilal Chaouch",   vehicle:"Peugeot 301",        rating:4.9, seats:2,  price:800,  type:"Taxi" },
       { id:"ct-gc-4", from:"Constantine", to:"Sétif",    dep:"13:00", date:"2026-05-24", driver:"Adel Ziane",      vehicle:"Renault Logan",       rating:4.6, seats:4,  price:600,  type:"Taxi" },
       { id:"ct-gc-5", from:"Constantine", to:"Batna",    dep:"15:30", date:"2026-05-24", driver:"Sofiane Rezgui",  vehicle:"Yutong ZK6122",      rating:4.3, seats:9,  price:700,  type:"Bus"  },
@@ -99,7 +99,7 @@ const stationTrips: Record<string, Record<string, {
     "Station Ain El Bey": [
       { id:"ct-ab-1", from:"Constantine", to:"Alger",    dep:"05:30", date:"2026-05-24", driver:"Nabil Chouikhi",  vehicle:"Karosa LC936",        rating:4.6, seats:14, price:1200, type:"Bus"  },
       { id:"ct-ab-2", from:"Constantine", to:"Mila",     dep:"08:00", date:"2026-05-24", driver:"Walid Hadjadj",   vehicle:"Dacia Duster",        rating:4.7, seats:4,  price:450,  type:"Taxi" },
-      { id:"ct-ab-3", from:"Constantine", to:"Oran",     dep:"14:00", date:"2026-05-24", driver:"Omar Tebbal",     vehicle:"Mercedes Tourismo",   rating:4.8, seats:7,  price:1450, type:"Bus"  },
+      { id:"ct-ab-3", from:"Constantine", to:"Mila",     dep:"14:00", date:"2026-05-24", driver:"Omar Tebbal",     vehicle:"Mercedes Tourismo",   rating:4.8, seats:7,  price:1450, type:"Bus"  },
     ],
   },
 
@@ -204,7 +204,7 @@ const availableTrips =
       )
     : [];
 
-  const totalSeats = selectedType === "Bus" ? 32 : 4;
+  const totalSeats = selectedType === "Bus" ? 32 : 6;
   const takenSeats = selectedTrip
     ? Array.from({ length: totalSeats - (selectedTrip.availableSeats ?? 8) }, () =>
         Math.floor(Math.random() * totalSeats) + 1
@@ -658,7 +658,7 @@ function Settings() {
     "Adrar","Chlef","Laghouat","Oum El Bouaghi","Batna","Béjaïa","Biskra","Béchar",
     "Blida","Bouira","Tamanrasset","Tébessa","Tlemcen","Tiaret","Tizi Ouzou","Alger",
     "Djelfa","Jijel","Sétif","Saïda","Skikda","Sidi Bel Abbès","Annaba","Guelma",
-    "Constantine","Médéa","Mostaganem","M'Sila","Mascara","Ouargla","Oran","El Bayadh",
+    "Constantine","Médéa","Mostaganem","M'Sila","Mascara","Ouargla","Mila","El Bayadh",
     "Illizi","Bordj Bou Arréridj","Boumerdès","El Tarf","Tindouf","Tissemsilt",
     "El Oued","Khenchela","Souk Ahras","Tipaza","Mila","Aïn Defla","Naâma",
     "Aïn Témouchent","Ghardaïa","Relizane",

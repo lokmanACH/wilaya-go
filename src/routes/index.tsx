@@ -7,9 +7,10 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Logo } from "@/components/Logo";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import landing_bg from "@/assets/landing_bg.png";
+import logo_pic from "@/assets/logo_pic.png";
+import logo_name from "@/assets/logo_name.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -39,7 +40,12 @@ function Navbar() {
   return (
     <header className="sticky top-0 z-40 border-b bg-background/85 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:px-6">
-        <Link to="/"><Logo /></Link>
+        <Link to="/">
+          <div className="flex items-center gap-3">
+            <img src={logo_pic} alt="Logo" className="h-8 w-8" />
+            <img src={logo_name} alt="Wilaya Go" className="h-6 w-auto" />
+          </div>
+        </Link>
         <nav className="hidden items-center gap-6 text-sm font-medium md:flex">
           <a href="#accueil" className="text-muted-foreground hover:text-foreground">Accueil</a>
           <a href="#fonctionnalites" className="text-muted-foreground hover:text-foreground">Fonctionnalités</a>
@@ -221,7 +227,8 @@ function Footer() {
     <footer className="bg-foreground py-10 text-background">
       <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-4 md:flex-row md:items-center md:px-6">
         <div className="flex items-center gap-3">
-          <Logo />
+          <img src={logo_pic} alt="Logo" className="h-8 w-8" />
+          <img src={logo_name} alt="Wilaya Go" className="h-6 w-auto" />
         </div>
         <div className="text-sm text-background/70">
           © 2026 WilayaGo - Tous droits réservés

@@ -11,6 +11,8 @@ import { Badge } from "@/components/ui/badge";
 import { Car, Users, UserCog, ArrowLeft } from "lucide-react";
 import { toast } from "sonner";
 import { useRole } from "@/hooks/use-theme";
+import logo_pic from "@/assets/logo_pic.png";
+import logo_name from "@/assets/logo_name.png";
 
 export const Route = createFileRoute("/login")({
   head: () => ({ meta: [{ title: "Connexion — Wilaya Go" }] }),
@@ -36,7 +38,10 @@ function LoginPage() {
           <Button asChild size="icon" variant="ghost">
             <Link to="/"><ArrowLeft className="h-4 w-4" /></Link>
           </Button>
-          <Logo />
+          <div className="hidden items-center gap-3 md:flex">
+            <img src={logo_pic} alt="Logo" className="h-8 w-8" />
+            <img src={logo_name} alt="Wilaya Go" className="h-6 w-auto" />
+          </div>
         </div>
         <ThemeToggle />
       </header>
