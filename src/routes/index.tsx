@@ -2,8 +2,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight, QrCode, MapPin, Wallet, Star, Lock,
   CheckCircle2, Smartphone, Car, Users,
-  Calendar,
+  Calendar, Menu, X,
 } from "lucide-react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -37,6 +38,8 @@ function LandingPage() {
 }
 
 function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <header className="sticky top-0 z-40 border-b bg-background/85 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:px-6">
@@ -53,14 +56,42 @@ function Navbar() {
         </nav>
         <div className="flex items-center gap-2">
           <ThemeToggle />
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden"
+            aria-label="Toggle menu"
+          >
+            {isOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
+          </button>
           <Button asChild variant="ghost" className="hidden sm:inline-flex">
             <Link to="/login">Se connecter</Link>
           </Button>
-          <Button asChild className="font-semibold">
+          <Button asChild className="hidden sm:inline-flex font-semibold">
             <Link to="/signup">Commencer</Link>
           </Button>
         </div>
       </div>
+      {isOpen && (
+        <div className="border-t md:hidden">
+          <nav className="flex flex-col gap-4 px-4 py-4 text-sm font-medium">
+            <a href="#accueil" className="text-muted-foreground hover:text-foreground" onClick={() => setIsOpen(false)}>Accueil</a>
+            <a href="#fonctionnalites" className="text-muted-foreground hover:text-foreground" onClick={() => setIsOpen(false)}>Fonctionnalités</a>
+            <a href="#comment" className="text-muted-foreground hover:text-foreground" onClick={() => setIsOpen(false)}>Comment ça marche</a>
+            <div className="flex flex-col gap-2 pt-2">
+              <Button asChild variant="ghost" className="w-full ">
+                <Link to="/login">Se connecter</Link>
+              </Button>
+              <Button asChild className="w-full font-semibold">
+                <Link to="/signup">Commencer</Link>
+              </Button>
+            </div>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }

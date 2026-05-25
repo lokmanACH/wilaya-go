@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Ticket, MapPin, Wallet, RefreshCcw, Star, Bell, Heart, Car, CheckCircle2 } from "lucide-react";
-import { reservations, trips, payments, refunds, notifications, drivers, formatDA, getTrip, getDriver } from "@/data/mock";
+import { reservations, payments, refunds, notifications, drivers, formatDA, getTrip, getDriver } from "@/data/mock";
 import { QRTicket } from "@/components/QRTicket";
 import { useState, useRef, useEffect } from "react";
 

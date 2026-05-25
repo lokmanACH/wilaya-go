@@ -2,10 +2,9 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { ReactNode, useState } from "react";
 import {
   Bell, LayoutDashboard, Users, Car, Wallet, RefreshCcw, MapPin,
-  Flag, Star, BarChart3, Settings, Search, Ticket, QrCode, Calendar,
-  HelpCircle, LogOut, Menu, ScanLine, TrendingUp, Heart, CreditCard,
+  Flag, Star, Settings, Search, Ticket, QrCode, 
+  LogOut, Menu, ScanLine, TrendingUp, Heart, CreditCard,
 } from "lucide-react";
-import { Logo } from "@/components/Logo";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -18,6 +17,8 @@ import {
 import { Sheet, SheetContent, SheetTitle, SheetHeader } from "@/components/ui/sheet";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
+import logo_pic from "@/assets/logo_pic.png";
+import logo_name from "@/assets/logo_name.png";
 
 type NavItem = { to: string; label: string; icon: any };
 
@@ -28,10 +29,8 @@ const adminNav: NavItem[] = [
   { to: "/admin?tab=reservations", label: "Réservations", icon: Ticket },
   { to: "/admin?tab=payments", label: "Paiements", icon: Wallet },
   { to: "/admin?tab=refunds", label: "Remboursements", icon: RefreshCcw },
-  { to: "/admin?tab=tracking", label: "Trajets en cours", icon: MapPin },
   { to: "/admin?tab=reports", label: "Signalements", icon: Flag },
   { to: "/admin?tab=reviews", label: "Avis", icon: Star },
-  { to: "/admin?tab=stats", label: "Statistiques", icon: BarChart3 },
   { to: "/admin?tab=settings", label: "Paramètres", icon: Settings },
 ];
 
@@ -73,9 +72,10 @@ function SidebarContent({ role, onNavigate }: { role: DashboardRole; onNavigate?
 
   return (
     <div className="flex h-full flex-col bg-sidebar text-sidebar-foreground">
-      <div className="flex h-16 items-center border-b border-sidebar-border px-4">
+      <div className="flex h-16 items-center border-b bg-accent border-sidebar-border px-4">
         <Link to="/" className="flex items-center gap-2">
-          <Logo />
+          <img src={logo_pic} alt="Logo" className="h-8 w-8" />
+          <img src={logo_name} alt="WilayaGo" className="h-6 w-auto" />
         </Link>
       </div>
       <div className="border-b border-sidebar-border px-4 py-3">

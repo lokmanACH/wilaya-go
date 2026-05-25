@@ -1,5 +1,5 @@
 import { createFileRoute, useSearch, useNavigate } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { z } from "zod";
 import { DashboardLayout } from "@/components/DashboardLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -14,8 +14,8 @@ import {
 } from "@/components/ui/dialog";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
-  Bus, Car, Users, Ticket, Wallet, RefreshCcw, MapPin, AlertTriangle,
-  Star, TrendingUp, CheckCircle2, XCircle, Eye, Pause, Trash2, Search,
+  Bus, Car, Users, Ticket, Wallet, RefreshCcw, MapPin,
+  Star, CheckCircle2, XCircle, Eye, Pause, Trash2, Search,
   ArrowUpRight, ArrowDownRight,
 } from "lucide-react";
 import {
@@ -62,10 +62,8 @@ function AdminPage() {
       {tab === "reservations" && <ReservationsTab />}
       {tab === "payments" && <PaymentsTab />}
       {tab === "refunds" && <RefundsTab />}
-      {tab === "tracking" && <TrackingTab />}
       {tab === "reports" && <ReportsTab />}
       {tab === "reviews" && <ReviewsTab />}
-      {tab === "stats" && <StatsTab />}
       {tab === "settings" && <SettingsTab />}
     </DashboardLayout>
   );

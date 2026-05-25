@@ -1,7 +1,8 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle2, Car } from "lucide-react";
-import { Logo } from "@/components/Logo";
+import logo_pic from "@/assets/logo_pic.png";
+import logo_name from "@/assets/logo_name.png";
 
 interface QRTicketProps {
   travelerName: string;
@@ -18,8 +19,11 @@ interface QRTicketProps {
 export function QRTicket(props: QRTicketProps) {
   return (
     <Card className="overflow-hidden border-2 border-dashed border-primary/40 print:border-solid">
-      <div className="flex items-center justify-between bg-foreground px-5 py-3 text-background">
-        <Logo />
+      <div className="flex items-center justify-between bg-accent px-5 py-3 text-foreground">
+        <div className="flex items-center gap-2">
+          <img src={logo_pic} alt="Logo" className="h-8 w-8" />
+          <img src={logo_name} alt="WilayaGo" className="h-6 w-auto" />
+        </div>
         <div className="text-right">
           <div className="text-[10px] uppercase tracking-widest opacity-70">Billet électronique</div>
           <div className="text-sm font-bold">N° {props.reservationId}</div>
@@ -57,8 +61,8 @@ export function QRTicket(props: QRTicketProps) {
         <div className="flex flex-col items-center gap-2">
           <div className="relative h-36 w-36 rounded-xl border-2 border-foreground bg-background p-2">
             <div className="fake-qr h-full w-full text-foreground" />
-            <div className="absolute left-1/2 top-1/2 flex h-9 w-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-md bg-primary">
-              <Car className="h-5 w-5 text-primary-foreground" />
+            <div className="absolute left-1/2 top-1/2 flex h-9 w-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-md bg-accent">
+              <img src={logo_pic} alt="" />
             </div>
           </div>
           <div className="text-center text-[10px] uppercase tracking-widest text-muted-foreground">
