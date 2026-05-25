@@ -142,9 +142,10 @@ function ReservationsTab() {
       <CardContent className="overflow-x-auto">
         <Table>
           <TableHeader><TableRow>
-            <TableHead>Passager</TableHead><TableHead>Trajet</TableHead><TableHead>Siège</TableHead>
-            <TableHead>Paiement</TableHead><TableHead>QR</TableHead><TableHead>Statut</TableHead>
-            <TableHead className="text-right">Actions</TableHead>
+            <TableHead>Passager</TableHead>
+            <TableHead>Trajet</TableHead>
+            <TableHead>Siège</TableHead>
+            <TableHead>QR</TableHead>
           </TableRow></TableHeader>
           <TableBody>{list.map((r) => {
             const trip = getTrip(r.tripId); const trav = getTraveler(r.travelerId);
@@ -153,15 +154,7 @@ function ReservationsTab() {
                 <TableCell className="font-medium">{trav?.name}</TableCell>
                 <TableCell>{trip?.fromWilaya} → {trip?.toWilaya}</TableCell>
                 <TableCell>N° {r.seatNumber}</TableCell>
-                <TableCell><StatusBadge status="Confirmée" /></TableCell>
                 <TableCell>{r.qrScanned ? "Scanné" : "Non scanné"}</TableCell>
-                <TableCell><StatusBadge status={r.status} /></TableCell>
-                <TableCell className="text-right">
-                  <div className="flex justify-end gap-1">
-                    <Button size="sm" onClick={() => { setList(xs => xs.map(x => x.id === r.id ? { ...x, status: "Confirmée" } : x)); toast.success("Réservation acceptée"); }}>Accepter</Button>
-                    <Button size="sm" variant="outline" onClick={() => { setList(xs => xs.map(x => x.id === r.id ? { ...x, status: "Annulée" } : x)); toast.message("Réservation refusée"); }}>Refuser</Button>
-                  </div>
-                </TableCell>
               </TableRow>
             );
           })}</TableBody>

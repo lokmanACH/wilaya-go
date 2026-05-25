@@ -67,11 +67,8 @@ function Navbar() {
               <Menu className="h-6 w-6" />
             )}
           </button>
-          <Button asChild variant="ghost" className="hidden sm:inline-flex">
-            <Link to="/login">Se connecter</Link>
-          </Button>
           <Button asChild className="hidden sm:inline-flex font-semibold">
-            <Link to="/signup">Commencer</Link>
+            <Link to="/login">Se connecter</Link>
           </Button>
         </div>
       </div>
@@ -82,11 +79,8 @@ function Navbar() {
             <a href="#fonctionnalites" className="text-muted-foreground hover:text-foreground" onClick={() => setIsOpen(false)}>Fonctionnalités</a>
             <a href="#comment" className="text-muted-foreground hover:text-foreground" onClick={() => setIsOpen(false)}>Comment ça marche</a>
             <div className="flex flex-col gap-2 pt-2">
-              <Button asChild variant="ghost" className="w-full ">
+              <Button asChild className="w-full font-semibold ">
                 <Link to="/login">Se connecter</Link>
-              </Button>
-              <Button asChild className="w-full font-semibold">
-                <Link to="/signup">Commencer</Link>
               </Button>
             </div>
           </nav>
@@ -108,7 +102,7 @@ function Hero() {
             Wilaya Go vous permet de réserver une place en taxi ou en bus, payer en ligne et suivre votre trajet en temps réel
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-xs ">
-            <div className="inline-flex items-center gap-2 rounded-lg bg-background/50 backdrop-blur px-3 py-1"><CheckCircle2 className="h-4 w-4 text-success" /> 58 wilayas couvertes</div>
+            <div className="inline-flex items-center gap-2 rounded-lg bg-background/50 backdrop-blur px-3 py-1"><CheckCircle2 className="h-4 w-4 text-success" /> 69 wilayas couvertes</div>
             <div className="inline-flex items-center gap-2 rounded-lg bg-background/50 backdrop-blur px-3 py-1"><CheckCircle2 className="h-4 w-4 text-success" /> Paiement BaridiMob, CIB, Edahabia</div>
           </div>
         </div>
@@ -153,7 +147,9 @@ function RegCard({ title, desc, cta, icon: Icon, dark }: { title: string; desc: 
         <h3 className="text-2xl font-bold">{title}</h3>
         <p className={dark ? "text-background/70" : "text-muted-foreground"}>{desc}</p>
         <Button asChild className={`mt-2 w-fit font-semibold ${dark ? "" : ""}`}>
-          <Link to="/signup">{cta} <ArrowRight className="ml-2 h-4 w-4" /></Link>
+          <Link to={cta === "Devenir voyageur" ? "/signupTraveler" : "/signupDriver"}>
+            {cta} <ArrowRight className="ml-2 h-4 w-4" />
+          </Link>
         </Button>
       </CardContent>
     </Card>

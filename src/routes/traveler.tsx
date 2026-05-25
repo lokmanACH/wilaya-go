@@ -4,6 +4,7 @@ import { DashboardLayout } from "@/components/DashboardLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Ticket, MapPin, Wallet, RefreshCcw, Star, Bell, Heart, Car, CheckCircle2 } from "lucide-react";
@@ -26,7 +27,7 @@ export const Route = createFileRoute("/traveler")({
 const TITLES: Record<Tab, string> = { overview:"Vue d'ensemble", reservations:"Mes réservations", tickets:"Mes billets QR", tracking:"Suivi GPS", payments:"Paiements", refunds:"Remboursements", reviews:"Avis", notifications:"Notifications", favorites:"Chauffeurs favoris", settings:"Paramètres" };
 
 function StatusBadge({ status }: { status: string }) {
-  const m: Record<string, string> = { Confirmée:"bg-success/15 text-success", "En attente":"bg-warning/15 text-warning-foreground", Annulée:"bg-destructive/15 text-destructive", Terminée:"bg-muted text-muted-foreground", Payé:"bg-success/15 text-success", Bloqué:"bg-warning/15 text-warning-foreground", Libéré:"bg-success/15 text-success", Remboursé:"bg-destructive/15 text-destructive", Effectué:"bg-success/15 text-success" };
+  const m: Record<string, string> = { "Echec": "bg-red-100 text-red-800", "Succès": "bg-green-100 text-green-800", "Remboursé": "bg-yellow-100 text-yellow-800", "En attente": "bg-blue-100 text-blue-800" };
   return <Badge variant="secondary" className={m[status] ?? ""}>{status}</Badge>;
 }
 
@@ -64,6 +65,8 @@ function Overview() {
   const [selectedType, setSelectedType] = useState<"Bus" | "Taxi" | null>(null);
   const [selectedTrip, setSelectedTrip] = useState<any | null>(null);
   const [selectedSeat, setSelectedSeat] = useState<number | null>(null);
+  const [payMethod, setPayMethod] = useState<"baridimob" | "cib" | "edahabia">("baridimob");
+  const [cardInfo, setCardInfo] = useState({ number: "", name: "", expiry: "", cvv: "" });
   const [confirmed, setConfirmed] = useState(false);
 
   const wilayas = ["Constantine", "Sétif", "Skikda", "Khenchla", "El Eulma", "Mila", "Batna"];
@@ -212,19 +215,22 @@ const availableTrips =
     : [];
 
   const stepLabels = [
-    { label: "Wilaya", icon: MapPin },
-    { label: "Station", icon: MapPin },
-    { label: "Véhicule", icon: Car },
-    { label: "Trajet", icon: Ticket },
-    { label: "Siège", icon: Ticket },
-    { label: "Paiement", icon: Wallet },
+    { label: "Wilaya",    icon: MapPin  },
+    { label: "Station",   icon: MapPin  },
+    { label: "Véhicule",  icon: Car     },
+    { label: "Trajet",    icon: Ticket  },
+    { label: "Siège",     icon: Ticket  },
+    { label: "Paiement",  icon: Wallet  },
+    { label: "Confirmation", icon: CheckCircle2 },
   ];
 
   const goStep = (n: number) => setStep(n);
 
   const reset = () => {
     setStep(1); setSelectedWilaya(null); setSelectedStation(null);
-    setSelectedType(null); setSelectedTrip(null); setSelectedSeat(null); setConfirmed(false);
+    setSelectedType(null); setSelectedTrip(null); setSelectedSeat(null);
+    setConfirmed(false); setPayMethod("baridimob");
+    setCardInfo({ number: "", name: "", expiry: "", cvv: "" });
   };
 
   return (
@@ -437,11 +443,102 @@ const availableTrips =
                   <span>Total</span><span>{formatDA(selectedTrip.price)}</span>
                 </div>
               </div>
-              <Button className="w-full" onClick={() => setConfirmed(true)}>
+              <Button className="w-full" onClick={() => setStep(7)}>
                 <Wallet className="mr-2 h-4 w-4" /> Payer &amp; confirmer
               </Button>
             </div>
           )}
+
+          {step === 7 && selectedTrip && !confirmed && (
+          <div className="space-y-4">
+            <div className="flex items-center gap-2">
+              <Button variant="ghost" size="sm" onClick={() => goStep(6)}>
+                <RefreshCcw className="h-3.5 w-3.5 mr-1" /> Retour
+              </Button>
+              <p className="text-sm text-muted-foreground uppercase tracking-wider font-medium">
+                Mode de paiement
+              </p>
+            </div>
+
+            {/* Method selector */}
+            <div className="grid grid-cols-3 gap-3">
+              {([
+                { id: "baridimob", label: "BaridiMob", sub: "CCP mobile" },
+                { id: "cib",       label: "CIB",       sub: "Carte interbancaire" },
+                { id: "edahabia",  label: "Edahabia",  sub: "Carte postale" },
+              ] as const).map((m) => (
+                <button key={m.id} onClick={() => setPayMethod(m.id)}
+                  className={`flex flex-col items-center gap-1 rounded-xl border-2 p-4 transition-all cursor-pointer
+                    ${payMethod === m.id ? "border-primary bg-primary/5" : "border-border hover:border-primary/50"}`}>
+                  <Wallet className="h-6 w-6 text-primary" />
+                  <span className="font-semibold text-sm">{m.label}</span>
+                  <span className="text-xs text-muted-foreground">{m.sub}</span>
+                </button>
+              ))}
+            </div>
+
+            {/* Card fields */}
+            <div className="rounded-lg border p-4 space-y-3">
+              {payMethod === "baridimob" ? (
+                <>
+                  <div className="space-y-1">
+                    <label className="text-xs text-muted-foreground">Numéro de compte CCP</label>
+                    <Input placeholder="00000000 clé 00" value={cardInfo.number}
+                      onChange={(e) => setCardInfo({ ...cardInfo, number: e.target.value })} />
+                  </div>
+                  <div className="space-y-1">
+                    <label className="text-xs text-muted-foreground">Nom du titulaire</label>
+                    <Input placeholder="Prénom Nom" value={cardInfo.name}
+                      onChange={(e) => setCardInfo({ ...cardInfo, name: e.target.value })} />
+                  </div>
+                  <div className="space-y-1">
+                    <label className="text-xs text-muted-foreground">Code PIN BaridiMob</label>
+                    <Input type="password" placeholder="••••" maxLength={4} value={cardInfo.cvv}
+                      onChange={(e) => setCardInfo({ ...cardInfo, cvv: e.target.value })} />
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="space-y-1">
+                    <label className="text-xs text-muted-foreground">Numéro de carte</label>
+                    <Input placeholder="0000 0000 0000 0000" value={cardInfo.number}
+                      onChange={(e) => setCardInfo({ ...cardInfo, number: e.target.value })} />
+                  </div>
+                  <div className="space-y-1">
+                    <label className="text-xs text-muted-foreground">Nom du titulaire</label>
+                    <Input placeholder="Prénom Nom" value={cardInfo.name}
+                      onChange={(e) => setCardInfo({ ...cardInfo, name: e.target.value })} />
+                  </div>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="space-y-1">
+                      <label className="text-xs text-muted-foreground">Date d'expiration</label>
+                      <Input placeholder="MM/AA" maxLength={5} value={cardInfo.expiry}
+                        onChange={(e) => setCardInfo({ ...cardInfo, expiry: e.target.value })} />
+                    </div>
+                    <div className="space-y-1">
+                      <label className="text-xs text-muted-foreground">
+                        {payMethod === "edahabia" ? "Code secret" : "CVV"}
+                      </label>
+                      <Input type="password" placeholder="•••" maxLength={4} value={cardInfo.cvv}
+                        onChange={(e) => setCardInfo({ ...cardInfo, cvv: e.target.value })} />
+                    </div>
+                  </div>
+                </>
+              )}
+
+              <div className="flex justify-between text-sm pt-1 border-t">
+                <span className="text-muted-foreground">Total</span>
+                <span className="font-bold">{formatDA(selectedTrip.price)}</span>
+              </div>
+            </div>
+
+            <Button className="w-full"
+              disabled={!cardInfo.number || !cardInfo.name || !cardInfo.cvv}
+              onClick={() => setConfirmed(true)}>
+              <Wallet className="mr-2 h-4 w-4" /> Confirmer le paiement
+            </Button>
+          </div>
+        )}
 
           {/* Confirmed ticket */}
           {confirmed && selectedTrip && (
@@ -482,7 +579,7 @@ function Reservations() {
         <TableHeader><TableRow>
           <TableHead>Trajet</TableHead><TableHead>Date</TableHead><TableHead>Type</TableHead>
           <TableHead>Chauffeur</TableHead><TableHead>Siège</TableHead><TableHead>Prix</TableHead>
-          <TableHead>Statut</TableHead><TableHead className="text-right">Actions</TableHead>
+          <TableHead className="text-right">Actions</TableHead>
         </TableRow></TableHeader>
         <TableBody>{reservations.map((r) => { const t = getTrip(r.tripId)!; const d = getDriver(t.driverId)!;
           return (<TableRow key={r.id}>
@@ -492,7 +589,6 @@ function Reservations() {
             <TableCell>{d.name}</TableCell>
             <TableCell>N° {r.seatNumber}</TableCell>
             <TableCell>{formatDA(t.price)}</TableCell>
-            <TableCell><StatusBadge status={r.status} /></TableCell>
             <TableCell className="text-right"><div className="flex justify-end gap-1">
               <Button size="sm" variant="outline"
                 onClick={() => navigate({ to: "/traveler", search: { tab: "tickets", highlight: r.id } })}>
@@ -566,7 +662,7 @@ function Payments() {
         <TableHeader><TableRow>
           <TableHead>Transaction</TableHead><TableHead>Trajet</TableHead>
           <TableHead>Montant</TableHead><TableHead>Méthode</TableHead>
-          <TableHead>Compte intermédiaire</TableHead><TableHead>Statut</TableHead><TableHead>Date</TableHead>
+          <TableHead>Statut</TableHead><TableHead>Date</TableHead>
         </TableRow></TableHeader>
         <TableBody>{payments.map((p) => { const r = reservations.find(x => x.id === p.reservationId); const t = r && getTrip(r.tripId);
           return (<TableRow key={p.transactionId}>
@@ -574,7 +670,6 @@ function Payments() {
             <TableCell>{t ? `${t.fromWilaya} → ${t.toWilaya}` : "—"}</TableCell>
             <TableCell>{formatDA(p.total)}</TableCell>
             <TableCell>{p.method}</TableCell>
-            <TableCell><StatusBadge status={p.escrowStatus} /></TableCell>
             <TableCell><StatusBadge status={p.status} /></TableCell>
             <TableCell>{p.createdAt.split("T")[0]}</TableCell>
           </TableRow>); })}

@@ -27,7 +27,6 @@ const adminNav: NavItem[] = [
   { to: "/admin?tab=drivers", label: "Chauffeurs", icon: Car },
   { to: "/admin?tab=travelers", label: "Voyageurs", icon: Users },
   { to: "/admin?tab=reservations", label: "Réservations", icon: Ticket },
-  { to: "/admin?tab=payments", label: "Paiements", icon: Wallet },
   { to: "/admin?tab=refunds", label: "Remboursements", icon: RefreshCcw },
   { to: "/admin?tab=reports", label: "Signalements", icon: Flag },
   { to: "/admin?tab=reviews", label: "Avis", icon: Star },

@@ -1,8 +1,6 @@
-import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
-import { Logo } from "@/components/Logo";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { toast } from "sonner";
-import { useRole } from "@/hooks/use-theme";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -10,23 +8,13 @@ import { useState } from "react";
 import logo_pic from "@/assets/logo_pic.png";
 import logo_name from "@/assets/logo_name.png";
 
-export const Route = createFileRoute("/signup")({
+export const Route = createFileRoute("/signupDriver")({
   head: () => ({ meta: [{ title: "Inscription — Wilaya Go" }] }),
   component: SignupPage,
 });
 
 function SignupPage() {
-  const nav = useNavigate();
-  const { setRole } = useRole();
-  const [mode, setMode] = useState<"driver" | "traveler">("driver");
   const [loading, setLoading] = useState(false);
-
-  const go = (role: "admin" | "driver" | "traveler") => {
-    setRole(role);
-    toast.success("Inscription réussie", { description: "Bienvenue sur Wilaya Go" });
-    const dest = role === "admin" ? "/admin" : role === "driver" ? "/driver" : "/traveler";
-    nav({ to: dest });
-  };
 
   const handleDriverSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -44,27 +32,7 @@ function SignupPage() {
     // TODO: send to API
     setTimeout(() => {
       setLoading(false);
-      go("driver");
     }, 800);
-  };
-
-  const handleTravelerSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setLoading(true);
-    const form = e.currentTarget;
-    const data = new FormData(form);
-
-    if (!data.get("fullName") || !data.get("phone") || !data.get("email") || !data.get("password")) {
-      toast.error("Veuillez remplir les champs obligatoires");
-      setLoading(false);
-      return;
-    }
-
-    // TODO: send to API
-    setTimeout(() => {
-      setLoading(false);
-      go("traveler");
-    }, 600);
   };
 
   return (
@@ -83,25 +51,9 @@ function SignupPage() {
       </header>
 
       <main className="mx-auto w-full max-w-4xl p-6">
-        <h1 className="mb-4 text-2xl font-semibold">Inscription</h1>
+        <h1 className="mb-4 text-2xl font-semibold">Inscription Chauffeur</h1>
 
-        <div className="mb-6 flex gap-3">
-          <button
-            className={`px-4 py-2 rounded-md ${mode === "driver" ? "bg-primary text-white" : "bg-muted"}`}
-            onClick={() => setMode("driver")}
-          >
-            Inscription Chauffeur
-          </button>
-          <button
-            className={`px-4 py-2 rounded-md ${mode === "traveler" ? "bg-primary text-white" : "bg-muted"}`}
-            onClick={() => setMode("traveler")}
-          >
-            Inscription Voyageur
-          </button>
-        </div>
-
-        {mode === "driver" ? (
-          <form onSubmit={handleDriverSubmit} className="space-y-4">
+          <form onSubmit={handleDriverSubmit} className="space-y-4" id="driver-form">
             <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
               <label className="flex flex-col gap-1">
                 <span className="text-sm">Nom et prénom *</span>
@@ -201,69 +153,6 @@ function SignupPage() {
               </Button>
             </div>
           </form>
-        ) : (
-          <form onSubmit={handleTravelerSubmit} className="space-y-4">
-            <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-              <label className="flex flex-col gap-1">
-                <span className="text-sm">Nom et prénom *</span>
-                <Input name="fullName" placeholder="Ex: Aicha B." />
-              </label>
-
-              <label className="flex flex-col gap-1">
-                <span className="text-sm">Téléphone *</span>
-                <Input name="phone" type="tel" />
-              </label>
-
-              <label className="flex flex-col gap-1">
-                <span className="text-sm">Email *</span>
-                <Input name="email" type="email" />
-              </label>
-
-              <label className="flex flex-col gap-1">
-                <span className="text-sm">Mot de passe *</span>
-                <Input name="password" type="password" />
-              </label>
-            </div>
-
-            <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-              <label className="flex flex-col gap-1">
-                <span className="text-sm">Scan carte nationale</span>
-                <input 
-                className="rounded-md border p-2 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" 
-                name="idScan" type="file" accept="image/*,application/pdf" />
-              </label>
-
-              <label className="flex flex-col gap-1">
-                <span className="text-sm">Compte bancaire / CCP</span>
-                <Input name="bankAccount" />
-              </label>
-            </div>
-
-            <label className="flex flex-col gap-1">
-              <span className="text-sm">Moyens de paiement acceptés</span>
-              <div className="flex gap-2">
-                <label className="inline-flex items-center gap-2">
-                  <input type="checkbox" name="pay_cash" />
-                  <span>Espèces</span>
-                </label>
-                <label className="inline-flex items-center gap-2">
-                  <input type="checkbox" name="pay_card" />
-                  <span>Carte</span>
-                </label>
-                <label className="inline-flex items-center gap-2">
-                  <input type="checkbox" name="pay_mobile" />
-                  <span>Mobile</span>
-                </label>
-              </div>
-            </label>
-
-            <div className="flex items-center justify-end gap-2">
-              <Button type="submit" disabled={loading}>
-                {loading ? "Enregistrement..." : "S'inscrire"}
-              </Button>
-            </div>
-          </form>
-        )}
       </main>
     </div>
   );

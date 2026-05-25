@@ -60,7 +60,6 @@ function AdminPage() {
       {tab === "drivers" && <DriversTab />}
       {tab === "travelers" && <TravelersTab />}
       {tab === "reservations" && <ReservationsTab />}
-      {tab === "payments" && <PaymentsTab />}
       {tab === "refunds" && <RefundsTab />}
       {tab === "reports" && <ReportsTab />}
       {tab === "reviews" && <ReviewsTab />}

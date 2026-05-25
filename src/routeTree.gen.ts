@@ -10,7 +10,8 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TravelerRouteImport } from './routes/traveler'
-import { Route as SignupRouteImport } from './routes/signup'
+import { Route as SignupTravelerRouteImport } from './routes/signupTraveler'
+import { Route as SignupDriverRouteImport } from './routes/signupDriver'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as DriverRouteImport } from './routes/driver'
 import { Route as AdminRouteImport } from './routes/admin'
@@ -25,9 +26,14 @@ const TravelerRoute = TravelerRouteImport.update({
   path: '/traveler',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SignupRoute = SignupRouteImport.update({
-  id: '/signup',
-  path: '/signup',
+const SignupTravelerRoute = SignupTravelerRouteImport.update({
+  id: '/signupTraveler',
+  path: '/signupTraveler',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignupDriverRoute = SignupDriverRouteImport.update({
+  id: '/signupDriver',
+  path: '/signupDriver',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -76,7 +82,8 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AdminRoute
   '/driver': typeof DriverRoute
   '/login': typeof LoginRoute
-  '/signup': typeof SignupRoute
+  '/signupDriver': typeof SignupDriverRoute
+  '/signupTraveler': typeof SignupTravelerRoute
   '/traveler': typeof TravelerRouteWithChildren
   '/tracking/$id': typeof TrackingIdRoute
   '/traveler/booking/$id': typeof TravelerBookingIdRoute
@@ -88,7 +95,8 @@ export interface FileRoutesByTo {
   '/admin': typeof AdminRoute
   '/driver': typeof DriverRoute
   '/login': typeof LoginRoute
-  '/signup': typeof SignupRoute
+  '/signupDriver': typeof SignupDriverRoute
+  '/signupTraveler': typeof SignupTravelerRoute
   '/traveler': typeof TravelerRouteWithChildren
   '/tracking/$id': typeof TrackingIdRoute
   '/traveler/booking/$id': typeof TravelerBookingIdRoute
@@ -101,7 +109,8 @@ export interface FileRoutesById {
   '/admin': typeof AdminRoute
   '/driver': typeof DriverRoute
   '/login': typeof LoginRoute
-  '/signup': typeof SignupRoute
+  '/signupDriver': typeof SignupDriverRoute
+  '/signupTraveler': typeof SignupTravelerRoute
   '/traveler': typeof TravelerRouteWithChildren
   '/tracking/$id': typeof TrackingIdRoute
   '/traveler/booking/$id': typeof TravelerBookingIdRoute
@@ -115,7 +124,8 @@ export interface FileRouteTypes {
     | '/admin'
     | '/driver'
     | '/login'
-    | '/signup'
+    | '/signupDriver'
+    | '/signupTraveler'
     | '/traveler'
     | '/tracking/$id'
     | '/traveler/booking/$id'
@@ -127,7 +137,8 @@ export interface FileRouteTypes {
     | '/admin'
     | '/driver'
     | '/login'
-    | '/signup'
+    | '/signupDriver'
+    | '/signupTraveler'
     | '/traveler'
     | '/tracking/$id'
     | '/traveler/booking/$id'
@@ -139,7 +150,8 @@ export interface FileRouteTypes {
     | '/admin'
     | '/driver'
     | '/login'
-    | '/signup'
+    | '/signupDriver'
+    | '/signupTraveler'
     | '/traveler'
     | '/tracking/$id'
     | '/traveler/booking/$id'
@@ -152,7 +164,8 @@ export interface RootRouteChildren {
   AdminRoute: typeof AdminRoute
   DriverRoute: typeof DriverRoute
   LoginRoute: typeof LoginRoute
-  SignupRoute: typeof SignupRoute
+  SignupDriverRoute: typeof SignupDriverRoute
+  SignupTravelerRoute: typeof SignupTravelerRoute
   TravelerRoute: typeof TravelerRouteWithChildren
   TrackingIdRoute: typeof TrackingIdRoute
 }
@@ -166,11 +179,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TravelerRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/signup': {
-      id: '/signup'
-      path: '/signup'
-      fullPath: '/signup'
-      preLoaderRoute: typeof SignupRouteImport
+    '/signupTraveler': {
+      id: '/signupTraveler'
+      path: '/signupTraveler'
+      fullPath: '/signupTraveler'
+      preLoaderRoute: typeof SignupTravelerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signupDriver': {
+      id: '/signupDriver'
+      path: '/signupDriver'
+      fullPath: '/signupDriver'
+      preLoaderRoute: typeof SignupDriverRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -253,7 +273,8 @@ const rootRouteChildren: RootRouteChildren = {
   AdminRoute: AdminRoute,
   DriverRoute: DriverRoute,
   LoginRoute: LoginRoute,
-  SignupRoute: SignupRoute,
+  SignupDriverRoute: SignupDriverRoute,
+  SignupTravelerRoute: SignupTravelerRoute,
   TravelerRoute: TravelerRouteWithChildren,
   TrackingIdRoute: TrackingIdRoute,
 }

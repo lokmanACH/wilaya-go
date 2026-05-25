@@ -6,7 +6,7 @@ export const wilayas = [
 
 export type TransportType = "Taxi" | "Bus";
 export type TripStatus = "Disponible" | "En cours" | "Terminé" | "Annulé";
-export type PaymentStatus = "Payé" | "En attente" | "Remboursé" | "Bloqué" | "Libéré";
+export type PaymentStatus = "Payé" | "En attente" | "Remboursé" | "Echec" | "Succès";
 export type PaymentMethod = "BaridiMob" | "CIB" | "Edahabia";
 
 export interface Driver {
@@ -81,7 +81,7 @@ export interface Payment {
   amount: number;
   platformFee: number;
   total: number;
-  escrowStatus: "Bloqué" | "Libéré" | "Remboursé";
+  escrowStatus: "Echec" | "Succès" | "Remboursé";
   createdAt: string;
 }
 
@@ -120,10 +120,10 @@ export const reservations: Reservation[] = [
 ];
 
 export const payments: Payment[] = [
-  { transactionId: "TX-2026-0001", reservationId: "r1", travelerId: "t1", driverId: "d2", method: "BaridiMob", status: "Libéré", amount: 1200, platformFee: 120, total: 1320, escrowStatus: "Libéré", createdAt: "2026-05-15T10:24:00" },
-  { transactionId: "TX-2026-0002", reservationId: "r2", travelerId: "t1", driverId: "d1", method: "CIB", status: "Bloqué", amount: 2500, platformFee: 200, total: 2700, escrowStatus: "Bloqué", createdAt: "2026-05-14T08:12:00" },
-  { transactionId: "TX-2026-0003", reservationId: "r3", travelerId: "t3", driverId: "d4", method: "Edahabia", status: "Libéré", amount: 1800, platformFee: 150, total: 1950, escrowStatus: "Libéré", createdAt: "2026-05-14T19:45:00" },
-  { transactionId: "TX-2026-0004", reservationId: "r4", travelerId: "t2", driverId: "d2", method: "BaridiMob", status: "Bloqué", amount: 1400, platformFee: 130, total: 1530, escrowStatus: "Bloqué", createdAt: "2026-05-13T11:00:00" },
+  { transactionId: "TX-2026-0001", reservationId: "r1", travelerId: "t1", driverId: "d2", method: "BaridiMob", status: "Succès", amount: 1200, platformFee: 120, total: 1320, escrowStatus: "Succès", createdAt: "2026-05-15T10:24:00" },
+  { transactionId: "TX-2026-0002", reservationId: "r2", travelerId: "t1", driverId: "d1", method: "CIB", status: "Echec", amount: 2500, platformFee: 200, total: 2700, escrowStatus: "Echec", createdAt: "2026-05-14T08:12:00" },
+  { transactionId: "TX-2026-0003", reservationId: "r3", travelerId: "t3", driverId: "d4", method: "Edahabia", status: "Succès", amount: 1800, platformFee: 150, total: 1950, escrowStatus: "Succès", createdAt: "2026-05-14T19:45:00" },
+  { transactionId: "TX-2026-0004", reservationId: "r4", travelerId: "t2", driverId: "d2", method: "BaridiMob", status: "Echec", amount: 1400, platformFee: 130, total: 1530, escrowStatus: "Echec", createdAt: "2026-05-13T11:00:00" },
   { transactionId: "TX-2026-0005", reservationId: "r5", travelerId: "t5", driverId: "d3", method: "CIB", status: "Remboursé", amount: 1500, platformFee: 130, total: 1630, escrowStatus: "Remboursé", createdAt: "2026-05-15T16:30:00" },
 ];
 
