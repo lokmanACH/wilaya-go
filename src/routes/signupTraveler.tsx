@@ -93,10 +93,6 @@ function SignupPage() {
               <span className="text-sm">Moyens de paiement acceptés</span>
               <div className="flex gap-2">
                 <label className="inline-flex items-center gap-2">
-                  <input type="checkbox" name="pay_cash" />
-                  <span>Espèces</span>
-                </label>
-                <label className="inline-flex items-center gap-2">
                   <input type="checkbox" name="pay_card" />
                   <span>Carte</span>
                 </label>
