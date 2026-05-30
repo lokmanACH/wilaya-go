@@ -199,7 +199,6 @@ const stationTrips: Record<string, Record<string, {
   },
 };
 
-// replace the availableTrips line with:
 const availableTrips =
   selectedWilaya && selectedStation
     ? (stationTrips[selectedWilaya]?.[selectedStation] ?? []).filter(

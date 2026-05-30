@@ -28,7 +28,6 @@ function SignupPage() {
       return;
     }
 
-    // TODO: send to API
     setTimeout(() => {
       setLoading(false);
     }, 600);

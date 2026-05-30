@@ -22,14 +22,12 @@ function SignupPage() {
     const form = e.currentTarget;
     const data = new FormData(form);
 
-    // minimal validation
     if (!data.get("fullName") || !data.get("phone") || !data.get("email") || !data.get("password")) {
       toast.error("Veuillez remplir les champs obligatoires");
       setLoading(false);
       return;
     }
 
-    // TODO: send to API
     setTimeout(() => {
       setLoading(false);
     }, 800);
